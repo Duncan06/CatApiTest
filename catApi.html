@@ -16,6 +16,7 @@
 
 
    <script>
+      const CatGallery = []
       let count = -1;
 
       const images = document.querySelector('img')
@@ -39,8 +40,6 @@
          count++
          images.src = CatGallery[count].url
       }
-
-      const CatGallery = []
 
       const random = document.getElementById("random")
       const previous = document.getElementById("previous")
