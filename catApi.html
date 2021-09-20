@@ -7,12 +7,18 @@
    <title></title>
 </head>
 <body>
-   <div class="ImageDisplay"></div>
-   <img />
+   <div class="ImageDisplay">
+   
+      <img />
 
-   <button id="previous" disabled>Previous</button>
-   <button id="random">Random</button>
-   <button id="next">Next</button>
+      <div class="buttons">
+         <button id="previous" disabled>Previous</button>
+         <button id="random">Random</button>
+         <button id="next" disabled>Next</button>
+      </div>
+
+   </div>
+   
 
 
    <script>
@@ -34,11 +40,44 @@
       function decrement() {
          count--
          images.src = CatGallery[count].url
+         if (count == 0) {
+            this.disabled = true;
+         }
+         else {
+            this.disabled = false;
+         }
       }
 
       function increment() {
          count++
          images.src = CatGallery[count].url
+         if (count == CatGallery.length - 1) {
+            this.disabled = true;
+         }
+         else {
+            this.disabled = false;
+         }
+      }
+
+      function disableButtons() {
+         const previous = document.getElementById("previous")
+         const next = document.getElementById("next")
+         
+         console.log(count)
+         console.log(CatGallery.length - 1)
+         if (count == CatGallery.length - 1) {
+            next.disabled = true;
+         }
+         else {
+            next.disabled = false;
+         }
+
+         if (count == -1) {
+            previous.disabled = true;
+         }
+         else {
+            previous.disabled = false;
+         }
       }
 
       const random = document.getElementById("random")
@@ -47,11 +86,18 @@
 
       document.addEventListener('DOMContentLoaded', getCat)
       random.addEventListener('click', getCat)
+      
 
       previous.addEventListener('click', decrement)
 
       next.addEventListener('click', increment)
 
+      random.addEventListener('click', disableButtons)
+
+      
+     
+
+      
 
 
    </script>
