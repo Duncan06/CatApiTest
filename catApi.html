@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   <meta charset="utf-8" />
+   <link rel="stylesheet" href="catApi.css" />
+   <title></title>
+</head>
+<body>
+   <div class="ImageDisplay"></div>
+   <img />
+
+   <button id="previous" disabled>Previous</button>
+   <button id="random">Random</button>
+   <button id="next">Next</button>
+
+
+   <script>
+      let count = -1;
+
+      const images = document.querySelector('img')
+
+      function getCat() {
+         fetch('https://api.thecatapi.com/v1/images/search')
+            .then(blob => blob.json())
+            .then(data => {
+               CatGallery.push(...data)
+               increment()
+            })
+         
+      }
+
+      function decrement() {
+         count--
+         images.src = CatGallery[count].url
+      }
+
+      function increment() {
+         count++
+         images.src = CatGallery[count].url
+      }
+
+      const CatGallery = []
+
+      const random = document.getElementById("random")
+      const previous = document.getElementById("previous")
+      const next = document.getElementById("next")
+
+      document.addEventListener('DOMContentLoaded', getCat)
+      random.addEventListener('click', getCat)
+
+      previous.addEventListener('click', decrement)
+
+      next.addEventListener('click', increment)
+
+
+
+   </script>
+</body>
+
+</html>
