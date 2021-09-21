@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
    <meta charset="utf-8" />
    <link rel="stylesheet" href="catApi.css" />
    <title></title>
 </head>
+
 <body>
-   <div class="ImageDisplay">
-   
-      <img />
+   <div class="wrapper">
+      <div class="ImageDisplay">
+         <img />
+      </div>
 
       <div class="buttons">
          <button id="previous" disabled>Previous</button>
          <button id="random">Random</button>
          <button id="next" disabled>Next</button>
       </div>
-
    </div>
    
-
 
    <script>
       const CatGallery = []
       let count = -1;
 
       const images = document.querySelector('img')
+      const random = document.getElementById("random")
+      const previous = document.getElementById("previous")
+      const next = document.getElementById("next")
 
       function getCat() {
          fetch('https://api.thecatapi.com/v1/images/search')
@@ -40,6 +44,7 @@
       function decrement() {
          count--
          images.src = CatGallery[count].url
+         next.disabled = false;
          if (count == 0) {
             this.disabled = true;
          }
@@ -51,6 +56,11 @@
       function increment() {
          count++
          images.src = CatGallery[count].url
+
+         if (count != 0) {
+            previous.disabled = false;
+         }
+
          if (count == CatGallery.length - 1) {
             this.disabled = true;
          }
@@ -59,46 +69,11 @@
          }
       }
 
-      function disableButtons() {
-         const previous = document.getElementById("previous")
-         const next = document.getElementById("next")
-         
-         console.log(count)
-         console.log(CatGallery.length - 1)
-         if (count == CatGallery.length - 1) {
-            next.disabled = true;
-         }
-         else {
-            next.disabled = false;
-         }
-
-         if (count == -1) {
-            previous.disabled = true;
-         }
-         else {
-            previous.disabled = false;
-         }
-      }
-
-      const random = document.getElementById("random")
-      const previous = document.getElementById("previous")
-      const next = document.getElementById("next")
-
       document.addEventListener('DOMContentLoaded', getCat)
       random.addEventListener('click', getCat)
       
-
       previous.addEventListener('click', decrement)
-
       next.addEventListener('click', increment)
-
-      random.addEventListener('click', disableButtons)
-
-      
-     
-
-      
-
 
    </script>
 </body>

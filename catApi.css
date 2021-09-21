@@ -1,19 +1,48 @@
-.ImageDisplay {
-   display: flex;
-   flex-direction: column;
-   width: 300px;
-   height: 300px;
+.wrapper {
+   display: grid;
+   place-items: center;
+   height: 400px;
+   width: 400px;
+   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-rows: 1fr .2fr;
+   border: 10px solid teal;
+   background-color: paleturquoise;
+   margin-left: 20%;
+   box-shadow: 0 0 13px rgba(0, 0, 0, .5);
 }
 
-.ImageDisplay > * {
+.ImageDisplay, buttons {
+   display: flex;
+   grid-column: 1 / -1;
+}
+
+.ImageDisplay {
+   flex-direction: column;
+   grid-row: span 1;
+   width: 375px;
+   max-height: 300px;
+   overflow: hidden;
+}
+
+#img {
    width: 100%;
 }
 
 .buttons {
-   display: flex;
-   gap: 20px;
+   grid-column: 1 / -1;
 }
 
 .buttons > * {
-   flex: 1 1 auto;
+   appearance: none;
+   border: none;
+   font-size: 1.5rem;
+   padding: 1rem 1.5rem;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+   background-color: springgreen;
+   grid-gap: 0.5rem;
+}
+
+.buttons > *:hover {
+   background-color:steelblue;
+   cursor: pointer;
 }
