@@ -14,6 +14,9 @@
          <img />
       </div>
 
+      <div class="count">
+      </div>
+
       <div class="buttons">
          <button id="previous" disabled>Previous</button>
          <button id="random">Random</button>
@@ -21,7 +24,6 @@
       </div>
    </div>
    
-
    <script>
       const CatGallery = []
       let count = -1;
@@ -51,6 +53,7 @@
          else {
             this.disabled = false;
          }
+         updateIndex()
       }
 
       function increment() {
@@ -67,6 +70,12 @@
          else {
             this.disabled = false;
          }
+         updateIndex()
+      }
+
+      function updateIndex() {
+         document.querySelector('.count').innerHTML =
+            `<p> ${count + 1} / ${CatGallery.length} </p>`
       }
 
       document.addEventListener('DOMContentLoaded', getCat)
@@ -74,7 +83,6 @@
       
       previous.addEventListener('click', decrement)
       next.addEventListener('click', increment)
-
    </script>
 </body>
 
