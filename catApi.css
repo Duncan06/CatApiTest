@@ -1,10 +1,10 @@
 .wrapper {
    display: grid;
    place-items: center;
-   height: 500px;
+   height: 675px;
    width: 400px;
    grid-template-columns: 1fr 1fr 1fr;
-   grid-template-rows: 1fr .1fr .1fr .1fr;
+   grid-template-rows: 1fr .1fr .1fr  .1fr .1fr;
    border: 10px solid teal;
    background-color: paleturquoise;
    margin-left: 15%;
@@ -37,11 +37,17 @@
    gap: .5rem;
 }
 
+.description {
+   grid-column: 1 / -1;
+   font-family: cursive;
+   font-size: .9rem;
+}
 .count {
    grid-column: 1 / -1;
    font-family: cursive;
    font-size: .9rem;
 }
+
 .buttons {
    grid-column: 1 / -1;
 }
