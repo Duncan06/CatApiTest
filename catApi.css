@@ -1,24 +1,24 @@
 .wrapper {
    display: grid;
    place-items: center;
-   height: 400px;
+   height: 500px;
    width: 400px;
    grid-template-columns: 1fr 1fr 1fr;
-   grid-template-rows: 1fr .1fr .1fr;
+   grid-template-rows: 1fr .1fr .1fr .1fr;
    border: 10px solid teal;
    background-color: paleturquoise;
    margin-left: 15%;
    box-shadow: 0 0 13px rgba(0, 0, 0, .5);
 }
 
-.ImageDisplay, buttons {
+.ImageDisplay, .catInfo {
    display: flex;
    grid-column: 1 / -1;
 }
 
 .ImageDisplay {
    flex-direction: column;
-   margin-top: .75rem;
+   margin-top: 1.75rem;
    grid-row: span 1;
    width: 375px;
    max-height: 280px;
@@ -28,6 +28,13 @@
 
 #img {
    width: 100%;
+}
+
+.catInfo {
+   grid-column: 1 / -1;
+   font-family: cursive;
+   font-size: .9rem;
+   gap: .5rem;
 }
 
 .count {

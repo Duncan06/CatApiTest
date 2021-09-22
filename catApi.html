@@ -14,6 +14,9 @@
          <img />
       </div>
 
+      <div class="catInfo">
+      </div>
+
       <div class="count">
       </div>
 
@@ -38,6 +41,7 @@
             .then(blob => blob.json())
             .then(data => {
                CatGallery.push(...data)
+               console.log(data)
                increment()
             })
          
@@ -54,6 +58,7 @@
             this.disabled = false;
          }
          updateIndex()
+         catInfo()
       }
 
       function increment() {
@@ -71,11 +76,40 @@
             this.disabled = false;
          }
          updateIndex()
+         catInfo()
       }
 
       function updateIndex() {
          document.querySelector('.count').innerHTML =
             `<p> ${count + 1} / ${CatGallery.length} </p>`
+      }
+
+      function catInfo() {
+         if ((CatGallery[count].breeds.length != 0) &&
+            ("categories" in CatGallery[count])) {
+            document.querySelector('.catInfo').innerHTML =
+               `<p> Name: ${CatGallery[count].breeds[0].id} </p>
+                <p> Breed: ${CatGallery[count].breeds[0].name} </p>
+                <p> Category: ${CatGallery[count].categories[0].name} </p>`
+         }
+         else if (CatGallery[count].breeds.length != 0) {
+            document.querySelector('.catInfo').innerHTML =
+               `<p> Name: ${CatGallery[count].breeds[0].id} </p>
+                <p> Breed: ${CatGallery[count].breeds[0].name} </p>
+                <p> Category: Unknown </p>`
+         }
+         else if ("categories" in CatGallery[count]) {
+            document.querySelector('.catInfo').innerHTML =
+               `<p> Name: Uknown </p>
+                <p> Breed: Unknown </p>
+                <p> Category: ${CatGallery[count].categories[0].name} </p>`
+         }
+         else {
+            document.querySelector('.catInfo').innerHTML =
+               `<p> Name: Unknown </p>
+                <p> Breed: Uknown </p>
+                <p> Category: Uknown </p>`
+         }
       }
 
       document.addEventListener('DOMContentLoaded', getCat)
