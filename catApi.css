@@ -1,7 +1,6 @@
 .wrapper {
    display: grid;
    place-items: center;
-   height: 675px;
    width: 400px;
    grid-template-columns: 1fr 1fr 1fr;
    grid-template-rows: 1fr .1fr .1fr  .1fr .1fr;
